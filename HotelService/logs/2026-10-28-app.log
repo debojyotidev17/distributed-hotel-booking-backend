@@ -1,0 +1,57 @@
+{"level":"info","message":"HotelService is running on port 3000","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 08:10:15","data":{}}
+{"level":"info","message":"Availability scheduler started for 00:10 India time","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 08:10:15","data":{}}
+{"level":"info","message":"Room-generation worker started","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 08:10:15","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 08:10:15","data":{}}
+{"level":"info","message":"Booking-window check completed; queued 0 room-generation jobs","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 08:10:15","data":{}}
+{"level":"info","message":"HotelService is running on port 3000","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:17:47","data":{}}
+{"level":"info","message":"Availability scheduler started for 00:10 India time","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:17:47","data":{}}
+{"level":"info","message":"Room-generation worker started","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:17:47","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:17:47","data":{}}
+{"level":"info","message":"Booking-window check completed; queued 0 room-generation jobs","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:17:47","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"4f0a1df2-a6dc-4c8b-9b13-11e555dcf7ff","timestamp":"10-28-2026 09:17:52","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"4f0a1df2-a6dc-4c8b-9b13-11e555dcf7ff","timestamp":"10-28-2026 09:17:52","data":{}}
+{"level":"info","message":"State created successfully","correlationID":"4f0a1df2-a6dc-4c8b-9b13-11e555dcf7ff","timestamp":"10-28-2026 09:17:52","data":{}}
+{"level":"info","message":"Validating request params","correlationID":"6142a150-7670-4978-9ee8-733a10d164ce","timestamp":"10-28-2026 09:22:36","data":{}}
+{"level":"info","message":"Request params are valid","correlationID":"6142a150-7670-4978-9ee8-733a10d164ce","timestamp":"10-28-2026 09:22:36","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"6142a150-7670-4978-9ee8-733a10d164ce","timestamp":"10-28-2026 09:22:36","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"6142a150-7670-4978-9ee8-733a10d164ce","timestamp":"10-28-2026 09:22:36","data":{}}
+{"level":"info","message":"State updated successfully","correlationID":"6142a150-7670-4978-9ee8-733a10d164ce","timestamp":"10-28-2026 09:22:36","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"71efac09-e9bd-459c-8519-8447e36b3ef4","timestamp":"10-28-2026 09:24:24","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"71efac09-e9bd-459c-8519-8447e36b3ef4","timestamp":"10-28-2026 09:24:24","data":{}}
+{"level":"info","message":"City created successfully","correlationID":"71efac09-e9bd-459c-8519-8447e36b3ef4","timestamp":"10-28-2026 09:24:24","data":{}}
+{"level":"info","message":"Validating query params","correlationID":"08b901a5-4fd2-49b5-bde9-10f3440ab51e","timestamp":"10-28-2026 09:27:45","data":{}}
+{"level":"error","message":"Query params are invalid","correlationID":"08b901a5-4fd2-49b5-bde9-10f3440ab51e","timestamp":"10-28-2026 09:27:45","data":{}}
+{"level":"info","message":"Validating query params","correlationID":"53827b9c-1b1d-42d4-9c8e-09bf9c87a1f3","timestamp":"10-28-2026 09:27:51","data":{}}
+{"level":"error","message":"Query params are invalid","correlationID":"53827b9c-1b1d-42d4-9c8e-09bf9c87a1f3","timestamp":"10-28-2026 09:27:51","data":{}}
+{"level":"info","message":"Validating query params","correlationID":"c8c111a2-9c93-4ff0-88b2-fc237b38420a","timestamp":"10-28-2026 09:28:42","data":{}}
+{"level":"error","message":"Query params are invalid","correlationID":"c8c111a2-9c93-4ff0-88b2-fc237b38420a","timestamp":"10-28-2026 09:28:42","data":{}}
+{"level":"info","message":"HotelService is running on port 3000","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:33:30","data":{}}
+{"level":"info","message":"Availability scheduler started for 00:10 India time","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:33:30","data":{}}
+{"level":"info","message":"Room-generation worker started","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:33:30","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:33:30","data":{}}
+{"level":"info","message":"Booking-window check completed; queued 0 room-generation jobs","correlationID":"unknown-correlation-id","timestamp":"10-28-2026 09:33:30","data":{}}
+{"level":"info","message":"Validating query params","correlationID":"d2f34382-ca56-4bbb-a8ed-827f0bbe7a55","timestamp":"10-28-2026 09:35:01","data":{}}
+{"level":"info","message":"Query params are valid","correlationID":"d2f34382-ca56-4bbb-a8ed-827f0bbe7a55","timestamp":"10-28-2026 09:35:01","data":{}}
+{"level":"info","message":"Cities retrieved successfully","correlationID":"d2f34382-ca56-4bbb-a8ed-827f0bbe7a55","timestamp":"10-28-2026 09:35:01","data":{}}
+{"level":"info","message":"Validating query params","correlationID":"887ca4f1-0112-4cee-b6df-5db8ee1d5851","timestamp":"10-28-2026 09:35:16","data":{}}
+{"level":"info","message":"Query params are valid","correlationID":"887ca4f1-0112-4cee-b6df-5db8ee1d5851","timestamp":"10-28-2026 09:35:16","data":{}}
+{"level":"info","message":"Cities retrieved successfully","correlationID":"887ca4f1-0112-4cee-b6df-5db8ee1d5851","timestamp":"10-28-2026 09:35:16","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"364b6948-2815-49d0-b88d-8ff67976accf","timestamp":"10-28-2026 09:42:28","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"364b6948-2815-49d0-b88d-8ff67976accf","timestamp":"10-28-2026 09:42:28","data":{}}
+{"level":"info","message":"Hotel created successfully","correlationID":"364b6948-2815-49d0-b88d-8ff67976accf","timestamp":"10-28-2026 09:42:28","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"1ed2f8fc-8ee9-486f-a55b-4528fa6a04d9","timestamp":"10-28-2026 09:42:55","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"1ed2f8fc-8ee9-486f-a55b-4528fa6a04d9","timestamp":"10-28-2026 09:42:55","data":{}}
+{"level":"info","message":"Hotel created successfully","correlationID":"1ed2f8fc-8ee9-486f-a55b-4528fa6a04d9","timestamp":"10-28-2026 09:42:55","data":{}}
+{"level":"info","message":"Validating request params","correlationID":"eba001ac-ce8a-4097-ac7d-986ad2b01965","timestamp":"10-28-2026 09:45:35","data":{}}
+{"level":"info","message":"Request params are valid","correlationID":"eba001ac-ce8a-4097-ac7d-986ad2b01965","timestamp":"10-28-2026 09:45:35","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"eba001ac-ce8a-4097-ac7d-986ad2b01965","timestamp":"10-28-2026 09:45:35","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"eba001ac-ce8a-4097-ac7d-986ad2b01965","timestamp":"10-28-2026 09:45:35","data":{}}
+{"level":"error","message":"City not found in the selected state","correlationID":"eba001ac-ce8a-4097-ac7d-986ad2b01965","timestamp":"10-28-2026 09:45:35","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"d7e6ac2e-a6be-4977-9c2f-312ae2d593fd","timestamp":"10-28-2026 09:46:19","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"d7e6ac2e-a6be-4977-9c2f-312ae2d593fd","timestamp":"10-28-2026 09:46:19","data":{}}
+{"level":"info","message":"City created successfully","correlationID":"d7e6ac2e-a6be-4977-9c2f-312ae2d593fd","timestamp":"10-28-2026 09:46:19","data":{}}
+{"level":"info","message":"Validating request params","correlationID":"f27f38ed-483b-41d1-bb69-3be4f7e64ae0","timestamp":"10-28-2026 09:46:23","data":{}}
+{"level":"info","message":"Request params are valid","correlationID":"f27f38ed-483b-41d1-bb69-3be4f7e64ae0","timestamp":"10-28-2026 09:46:23","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"f27f38ed-483b-41d1-bb69-3be4f7e64ae0","timestamp":"10-28-2026 09:46:23","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"f27f38ed-483b-41d1-bb69-3be4f7e64ae0","timestamp":"10-28-2026 09:46:23","data":{}}
+{"level":"info","message":"Hotel updated successfully","correlationID":"f27f38ed-483b-41d1-bb69-3be4f7e64ae0","timestamp":"10-28-2026 09:46:23","data":{}}
