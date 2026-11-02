@@ -1,0 +1,7 @@
+{"level":"info","message":"NotificationService started","timestamp":"11-02-2026 07:18:17","data":{}}
+{"level":"info","message":"Notification worker is ready","timestamp":"11-02-2026 07:18:17","data":{}}
+{"level":"info","message":"Notification email sent","timestamp":"11-02-2026 07:18:21","data":{"recipient":"dmaharaj004@gmail.com","templateId":"booking-confirmation"}}
+{"level":"info","message":"NotificationService started","timestamp":"11-02-2026 07:26:44","data":{}}
+{"level":"info","message":"Notification worker is ready","timestamp":"11-02-2026 07:26:44","data":{}}
+{"level":"info","message":"NotificationService started","timestamp":"11-02-2026 07:26:45","data":{}}
+{"level":"info","message":"Notification worker is ready","timestamp":"11-02-2026 07:26:45","data":{}}

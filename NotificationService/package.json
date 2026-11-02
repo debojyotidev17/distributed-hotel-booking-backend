@@ -1,0 +1,25 @@
+{
+    "name": "notification-service",
+    "version": "1.0.0",
+    "description": "Notification microservice for the hotel booking system",
+    "type": "module",
+    "main": "dist/server.js",
+    "scripts": {
+        "start": "npx tsc && node --watch dist/server.js"
+    },
+    "dependencies": {
+        "@types/ioredis": "^4.28.10",
+        "bullmq": "^5.0.0",
+        "dotenv": "^17.4.2",
+        "handlebars": "^4.7.10",
+        "ioredis": "^6.0.0",
+        "nodemailer": "^7.0.0",
+        "winston": "^3.19.0",
+        "winston-daily-rotate-file": "^5.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.0",
+        "@types/nodemailer": "^6.4.17",
+        "typescript": "^7.0.2"
+    }
+}

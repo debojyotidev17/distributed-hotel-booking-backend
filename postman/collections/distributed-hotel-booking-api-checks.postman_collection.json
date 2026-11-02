@@ -1,0 +1,1234 @@
+{
+    "info": {
+        "name": "Distributed Hotel Booking - Route Checks",
+        "description": "Route checks for the current repository. Set blank username/loginEmail/loginPassword and ID variables before sending. Base URLs are prefilled. Requests are not run automatically; write and delete methods mutate data. NotificationService has no HTTP routes. State and city by-ID routes are available through the gateway; physical-room by-ID is not included because HotelService has no matching handler.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "01 - Auth",
+            "item": [
+                {
+                    "name": "Sign up customer",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/auth/signup",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"username\": \"{{username}}\",\n  \"email\": \"{{loginEmail}}\",\n  \"password\": \"{{loginPassword}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Fill username, loginEmail, and loginPassword collection variables before sending. Public endpoint; sends those values to your local API and creates an account."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Log in (stores token automatically)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/auth/login",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"{{loginEmail}}\",\n  \"password\": \"{{loginPassword}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Fill loginEmail and loginPassword collection variables first. A successful login saves the response access token for protected requests."
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                                    "  const body = pm.response.json();",
+                                    "  if (body?.data?.accessToken) pm.collectionVariables.set(\"token\", body.data.accessToken);",
+                                    "}"
+                                ]
+                            }
+                        }
+                    ],
+                    "response": []
+                },
+                {
+                    "name": "Get my profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/auth/profile"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Gateway: http://localhost:3000 by default. Edit the collection variable if your port differs."
+        },
+        {
+            "name": "02 - Roles and permissions (admin token)",
+            "item": [
+                {
+                    "name": "List roles",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get role by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{roleId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create role",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"qa_tester\",\n  \"description\": \"Temporary role for API route checks\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Replace role fields",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{roleId}}",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"qa_tester\",\n  \"description\": \"Temporary role for API route checks\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete role",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{roleId}}",
+                        "description": "Destructive: only use a test role, never a seeded role."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Assign role to user",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{userId}}/assign/{{roleId}}",
+                        "description": "No body. IDs can be read from seeded users/roles or signup/list response."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get permissions for role",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{roleId}}/permissions"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Assign permission to role",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{roleId}}/permissions",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"permissionId\": \"{{permissionId}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove permission from role",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/{{roleId}}/permissions",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"permissionId\": \"{{permissionId}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Destructive: removes an access-control assignment."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List all role-permission assignments",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/roles/role-permissions"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Every request in this folder requires an authenticated admin. Use seeded IDs; all mutations change the auth database."
+        },
+        {
+            "name": "03 - States and cities (Gateway)",
+            "item": [
+                {
+                    "name": "List states",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/states"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get state by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/states/{{stateId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create state",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/states",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Test State\",\n  \"code\": \"TS\",\n  \"type\": \"STATE\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires admin role."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update state",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/states/{{stateId}}",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Updated Test State\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires admin role. Use a test state."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete state",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/states/{{stateId}}",
+                        "description": "Requires admin role; destructive and may cascade to cities/hotels."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List cities",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/cities",
+                        "description": "Lists all cities. To filter, add query parameter stateId={{stateId}}."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get city by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/cities/{{cityId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List cities filtered by state ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/cities?stateId={{stateId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create city",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/cities",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Test City\",\n  \"stateId\": \"{{stateId}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires admin role."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update city",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/cities/{{cityId}}",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Updated Test City\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires admin role. Use a test city."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete city",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/cities/{{cityId}}",
+                        "description": "Requires admin role; destructive and may cascade to hotels."
+                    },
+                    "response": []
+                }
+            ],
+            "description": "These paths are exposed by the Gateway. Admin credentials are required for create/update/delete."
+        },
+        {
+            "name": "04 - Hotels and room inventory (Gateway)",
+            "item": [
+                {
+                    "name": "List hotels",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get hotel by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create hotel",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"QA Test Hotel\",\n  \"address\": \"1 Test Road\",\n  \"cityName\": \"{{cityName}}\",\n  \"stateName\": \"{{stateName}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires hotel:create. City and state names must match saved records."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update hotel",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"address\": \"2 Updated Test Road\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires hotel:update. Only send fields to change."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete hotel",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}",
+                        "description": "Requires hotel:delete; destructive and may cascade to its inventory."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List room categories for hotel",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create room category",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"roomType\": \"DELUXE\",\n  \"price\": 5000\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires room:create. roomType: SINGLE, DOUBLE, FAMILY, DELUXE, or SUITE."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get room category",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update room category",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"price\": 5500\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires room:update."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete room category",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}",
+                        "description": "Requires room:delete; destructive and may cascade."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List physical rooms",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}/physical-rooms",
+                        "description": "Requires room:read."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Register physical rooms",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}/physical-rooms",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"roomNumbers\": [\n    \"QA-101\",\n    \"QA-102\"\n  ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires room:create. Room labels must be unique within the category."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List availability periods",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}/availability-periods"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create availability periods",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/hotels/hotels/{{hotelId}}/room-categories/{{roomCategoryId}}/availability-periods",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"periods\": [\n    {\n      \"startDate\": \"2026-11-10\",\n      \"endDate\": \"2026-11-15\",\n      \"roomsPerNight\": 2\n    }\n  ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires availability:create. Dates are ISO YYYY-MM-DD; endDate is exclusive. Choose dates and quantity appropriate for your seed inventory."
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Gateway hotel paths include /hotels twice: the public Gateway prefix and the HotelService /hotels router prefix."
+        },
+        {
+            "name": "05 - Bookings (Gateway)",
+            "item": [
+                {
+                    "name": "Create pending booking",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/bookings",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"customerEmail\": \"customer@example.com\",\n  \"hotelId\": \"{{hotelId}}\",\n  \"roomCategoryId\": \"{{roomCategoryId}}\",\n  \"checkIn\": \"2026-11-10\",\n  \"checkOut\": \"2026-11-12\",\n  \"roomCount\": 1\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "Requires booking:create. Dates must have available rooms. On success, saves data.idempotencyKey (and booking ID) for the confirm/internal hold requests."
+                    },
+                    "response": [],
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                                    "  const data = pm.response.json()?.data;",
+                                    "  if (data?.idempotencyKey) pm.collectionVariables.set(\"idempotencyKey\", data.idempotencyKey);",
+                                    "  if (data?.bookingId) pm.collectionVariables.set(\"bookingId\", data.bookingId);",
+                                    "  else if (data?.id) pm.collectionVariables.set(\"bookingId\", data.id);",
+                                    "}"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Confirm pending booking",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": "{{gatewayUrl}}/bookings/{{idempotencyKey}}/confirm",
+                        "description": "Requires booking:create. Use the idempotencyKey returned by Create pending booking before its 10-minute hold expires."
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Gateway proxies to BookingService. Booking create also calls HotelService to hold inventory."
+        },
+        {
+            "name": "06 - Direct HotelService internal routes",
+            "item": [
+                {
+                    "name": "Get state by ID (direct HotelService)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{hotelServiceUrl}}/states/{{stateId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get city by ID (direct HotelService)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{hotelServiceUrl}}/cities/{{cityId}}"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create room hold (internal BookingService integration)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{hotelServiceUrl}}/booking-holds",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"bookingId\": \"{{bookingId}}\",\n  \"roomCategoryId\": \"{{roomCategoryId}}\",\n  \"startDate\": \"2026-11-10\",\n  \"endDate\": \"2026-11-12\",\n  \"roomsRequired\": 1\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "This internal endpoint is not mounted on the API Gateway. Normally BookingService calls it. Use only for isolated integration checks."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Release room hold (internal BookingService integration)",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{hotelServiceUrl}}/booking-holds/{{bookingId}}",
+                        "description": "This internal endpoint is not mounted on the API Gateway. Releases the hold associated with bookingId."
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Set hotelServiceUrl to the HotelService URL from your local configuration. Default shown as http://localhost:3001."
+        },
+        {
+            "name": "07 - Direct BookingService (optional)",
+            "description": "Use the Gateway versions first. These direct routes help isolate BookingService from Gateway auth/proxy behavior. Set bookingServiceUrl to the internal service URL.",
+            "item": [
+                {
+                    "name": "Create pending booking (direct)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"customerEmail\": \"customer@example.com\",\n  \"hotelId\": \"{{hotelId}}\",\n  \"roomCategoryId\": \"{{roomCategoryId}}\",\n  \"checkIn\": \"2026-11-10\",\n  \"checkOut\": \"2026-11-12\",\n  \"roomCount\": 1\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": "{{bookingServiceUrl}}/bookings"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Confirm pending booking (direct)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "{{bookingServiceUrl}}/bookings/{{idempotencyKey}}/confirm"
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "gatewayUrl",
+            "value": "http://localhost:3000",
+            "type": "string"
+        },
+        {
+            "key": "hotelServiceUrl",
+            "value": "http://localhost:3001",
+            "type": "string"
+        },
+        {
+            "key": "bookingServiceUrl",
+            "value": "http://localhost:3002",
+            "type": "string"
+        },
+        {
+            "key": "token",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "userId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "roleId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "permissionId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "stateId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "cityId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "hotelId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "roomCategoryId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "physicalRoomId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "bookingId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "idempotencyKey",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "loginEmail",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "loginPassword",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "cityName",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "stateName",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "username",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}

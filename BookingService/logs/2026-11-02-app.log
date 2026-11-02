@@ -1,0 +1,40 @@
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:10:00","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:10:00","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:10:00","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:52","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:52","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:52","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:53","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:53","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:53","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:54","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:54","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:54","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:55","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:55","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:55","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:55","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:55","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 06:11:55","data":{}}
+{"level":"info","message":"Validating request body","correlationID":"22023485-23e5-4d13-a630-36e9ee0b26df","timestamp":"11-02-2026 07:14:12","data":{}}
+{"level":"info","message":"Request body is valid","correlationID":"22023485-23e5-4d13-a630-36e9ee0b26df","timestamp":"11-02-2026 07:14:12","data":{}}
+{"level":"info","message":"Pending booking created successfully","correlationID":"22023485-23e5-4d13-a630-36e9ee0b26df","timestamp":"11-02-2026 07:14:12","data":{"bookingId":"a38d0d5b-4781-44ed-a9dd-c2d598c807aa","bookingAmount":7000,"idempotencyKey":"174adddc-3bf6-4845-88c3-40c107f762a1"}}
+{"level":"info","message":"Validating route params","correlationID":"5e31eec3-ec44-452c-9bd7-9c73da2b6557","timestamp":"11-02-2026 07:14:25","data":{}}
+{"level":"info","message":"Route params are valid","correlationID":"5e31eec3-ec44-452c-9bd7-9c73da2b6557","timestamp":"11-02-2026 07:14:25","data":{}}
+{"level":"info","message":"Notification job queued","correlationID":"5e31eec3-ec44-452c-9bd7-9c73da2b6557","timestamp":"11-02-2026 07:14:25","data":{"recipient":"dmaharaj004@gmail.com","templateId":"booking-confirmation"}}
+{"level":"info","message":"Booking confirmation processed","correlationID":"5e31eec3-ec44-452c-9bd7-9c73da2b6557","timestamp":"11-02-2026 07:14:25","data":{"idempotencyKey":"174adddc-3bf6-4845-88c3-40c107f762a1","outcome":"CONFIRMED"}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:49","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:49","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:49","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:50","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:50","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:50","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:52","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:52","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:52","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:52","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:52","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:52","data":{}}
+{"level":"info","message":"Server is running on 3002","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:53","data":{}}
+{"level":"info","message":"Booking expiry scheduler started","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:53","data":{}}
+{"level":"info","message":"Redis connected","correlationID":"unknown-correlation-id","timestamp":"11-02-2026 07:26:53","data":{}}
